@@ -1,0 +1,25 @@
+services:
+  monogdb-example: # Short
+    image: mongo:latest
+    container_name: monogdb-example
+    ports:
+      - "27017:27017"
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: rizki
+      MONGO_INITDB_ROOT_PASSWORD: rizki
+      MONGO_INITDB_DATABASE: admin
+
+  mongodb-express-example: # Long
+    image: mongo-express:latest
+    container_name: mongodb-express-example
+    depends_on:
+      - monogdb-example
+    # no: default nya tidak pernah restart
+    # always: selalu restart jika container berhenti, tapi jika di hentikan manual, dia akan restart ketiak pertama kali docker restart
+    # on-failure: restart jika container error dengan indikasi error ketika exit
+    # unless-stopped: selalu restart container, kecuali ketika dihentikan manual
+    restart: always
+    environment:
+      ME_CONFIG_MONGODB_SERVER: monogdb-example
+      ME_CONFIG_MONGODB_ADMINUSERNAME: rizki
+      ME_CONFIG_MONGODB_ADMINPASSWORD: rizki

@@ -1,0 +1,14 @@
+services:
+  nginx-example: #Unique name for the service
+    container_name: nginx-example
+    image: nginx:latest
+    ports:
+      - protocol: tcp
+        published: 80
+        target: 80
+  nginx-example2: #Unique name for the service
+    container_name: nginx-example2
+    image: nginx:latest
+    ports: 
+      - "8080:80"
+       

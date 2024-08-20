@@ -1,0 +1,14 @@
+services:
+  app:
+    container_name: app
+    build:
+      context: "./app"
+      dockerfile: Dockerfile
+    image: "app-golang:1.0.0"
+    environment:
+      - "APP_PORT=8080"
+    ports:
+      - "8080:8080"
+    
+# Ketika kita menggunakan perintah docker compose start, secara otomatis Docker Compose akan melakukan build terlebih dahulu jika Image nya belum terbuat
+#Tapi jika kita hanya ingin melakukan build Image saja, tanpa membuat Container, kita juga bisa menggunakan perintah : docker compose build
